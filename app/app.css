@@ -1,15 +1,110 @@
 @import "tailwindcss";
 
+/* Gilroy Font Faces */
+@font-face {
+  font-family: "Gilroy";
+  src: url("/Gilroy-Light.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/Gilroy-ExtraBold.otf") format("opentype");
+  font-weight: 700;
+  font-display: swap;
+}
+
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+  --font-sans: "Gilroy", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply bg-white;
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
+  font-family: "Gilroy", ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  font-family: "Gilroy", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* faq's title icon */
+.faq-title::after {
+  content: '';
+  display: inline-block;
+  background-image: url('https://aaptiv.com/wp-content/uploads/2024/05/Arrow.png');
+  background-repeat: no-repeat;
+  background-size: 70px 60px;
+  width: 70px;
+  height: 60px;
+  position: absolute;
+}
+
+.category-title::after {
+  content: '';
+  display: inline-block;
+  background-image: url('https://aaptiv.com/wp-content/uploads/2025/04/arrow-green.svg');
+  background-repeat: no-repeat;
+  background-size: 70px 60px;
+  width: 70px;
+  height: 60px;
+  position: absolute;
+  margin-left: 20px;
+  margin-top: -3px;
+}
+
+.hero-heading-title::after {
+  content: '';
+  display: block;
+  margin-top: 16px;
+  margin-left: -55px;
+  height: 16px;
+  background-image: url(https://aaptiv.com/wp-content/uploads/2024/05/Accent-line.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.double-heading-title::before {
+  content: '';
+  display: inline-block;
+  background-image: url(https://aaptiv.com/wp-content/uploads/2024/06/blue-vec.svg);
+  background-repeat: no-repeat;
+  background-size: auto;
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  margin-top: -36px !important;
+  margin-left: -36px;
+}
+
+@keyframes slide-in-down {
+  from {
+    transform: translateY(100%);
   }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-up {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in-down {
+  animation: slide-in-down 0.5s ease-out forwards;
+}
+
+.animate-slide-in-up {
+  animation: slide-in-up 0.5s ease-out forwards;
 }
