@@ -35,50 +35,62 @@ body {
 .faq-title::after {
   content: '';
   display: inline-block;
-  background-image: url('https://aaptiv.com/wp-content/uploads/2024/05/Arrow.png');
+  background-image: url('../app/assets/icons/arrow-blue.png');
   background-repeat: no-repeat;
-  background-size: 70px 60px;
-  width: 70px;
-  height: 60px;
+  background-size: 40px 35px;
+  width: 40px;
+  height: 35px;
   position: absolute;
 }
 
-.category-title::after {
-  content: '';
-  display: inline-block;
-  background-image: url('https://aaptiv.com/wp-content/uploads/2025/04/arrow-green.svg');
-  background-repeat: no-repeat;
-  background-size: 70px 60px;
-  width: 70px;
-  height: 60px;
-  position: absolute;
-  margin-left: 20px;
-  margin-top: -3px;
+@media (min-width: 768px) {
+  .faq-title::after {
+    background-size: 70px 60px;
+    width: 70px;
+    height: 60px;
+  }
 }
 
 .hero-heading-title::after {
   content: '';
   display: block;
-  margin-top: 16px;
-  margin-left: -55px;
-  height: 16px;
-  background-image: url(https://aaptiv.com/wp-content/uploads/2024/05/Accent-line.svg);
+  margin-top: 12px;
+  margin-left: 0;
+  height: 10px;
+  background-image: url('../app/assets/icons/accent-line.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
 
+@media (min-width: 768px) {
+  .hero-heading-title::after {
+    margin-top: 16px;
+    margin-left: -55px;
+    height: 16px;
+  }
+}
+
 .double-heading-title::before {
   content: '';
   display: inline-block;
-  background-image: url(https://aaptiv.com/wp-content/uploads/2024/06/blue-vec.svg);
+  background-image: url('../app/assets/icons/vec-blue.png');
   background-repeat: no-repeat;
-  background-size: auto;
-  width: 70px;
-  height: 70px;
+  background-size: contain;
+  width: 40px;
+  height: 40px;
   position: absolute;
-  margin-top: -36px !important;
-  margin-left: -36px;
+  margin-top: -20px !important;
+  margin-left: -20px;
+}
+
+@media (min-width: 768px) {
+  .double-heading-title::before {
+    width: 70px;
+    height: 70px;
+    margin-top: -36px !important;
+    margin-left: -36px;
+  }
 }
 
 @keyframes slide-in-down {

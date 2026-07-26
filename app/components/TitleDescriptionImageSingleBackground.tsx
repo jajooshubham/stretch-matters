@@ -5,7 +5,7 @@ export function TitleDescriptionImageSingleBackground({
     imageUrl,
     imageAlt = "Background Image",
     bgColor = "#0e2948",
-    backgroundImage = "https://aaptiv.com/wp-content/uploads/2024/05/aaptiv-pattern-bg.png",
+    backgroundImage ,
     buttonLink,
     buttonText,
     buttonColor,
@@ -33,44 +33,44 @@ export function TitleDescriptionImageSingleBackground({
                 backgroundPosition: "center",
             }}
         >
-            <div className="w-full mx-auto px-30">
-                <div className="max-w-6xl mx-auto p-8">
+            <div className="w-full mx-auto px-4 md:px-16 lg:px-30">
+                <div className="max-w-6xl mx-auto p-4 md:p-8">
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-4 items-center">
-                        {/* Right Side - Image (Hidden on Desktop) */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                        {/* Image (shown on top on mobile) */}
                         <div className="md:hidden">
                             <div className="relative w-full">
                                 <img
                                     src={imageUrl}
                                     alt={imageAlt}
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-auto max-w-full object-cover"
                                 />
                             </div>
                         </div>
                         {/* Left Side - Content */}
-                        <div className="flex flex-col justify-center min-w-md">
-                            <div className="pr-20 text-left">
+                        <div className="flex flex-col justify-center items-center md:items-start text-center md:text-left">
+                            <div className="pr-0 md:pr-12 lg:pr-20">
 
-                                <h3 className="text-2xl font-medium md:text-left" style={{ color: buttonColor }}>{heading}</h3>
+                                <h3 className="text-lg md:text-xl lg:text-2xl font-medium" style={{ color: buttonColor }}>{heading}</h3>
 
-                                <div className="mb-4 leading-tight">
+                                <div className="mb-3 md:mb-4 leading-tight">
                                     <div
-                                        className="pt-4"
+                                        className="pt-3 md:pt-4"
                                         dangerouslySetInnerHTML={{ __html: title }}
                                     />
                                 </div>
-                                <div className="text-lg md:text-xl mb-8 leading-relaxed max-w-md">
+                                <div className="text-base md:text-lg lg:text-xl mb-6 md:mb-8 leading-relaxed max-w-md">
                                     <div
-                                        className="pt-4"
+                                        className="pt-3 md:pt-4"
                                         dangerouslySetInnerHTML={{ __html: description }}
                                     />
                                 </div>
 
                                 {buttonText && (
-                                    <div className="flex flex-col sm:flex-row gap-4">
+                                    <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                                         <a
                                             href={buttonLink}
-                                            className="px-8 py-3 rounded-full font-semibold transition-all hover:shadow-lg text-center"
+                                            className="px-6 py-3 md:px-8 md:py-3 rounded-full font-semibold text-sm md:text-base transition-all hover:shadow-lg text-center"
                                             style={{
                                                 backgroundColor: buttonColor,
                                                 color: buttonTextColor,
@@ -83,13 +83,13 @@ export function TitleDescriptionImageSingleBackground({
                             </div>
 
                         </div>
-                        {/* Right Side - Image (Hidden on Mobile) */}
+                        {/* Right Side - Image (Desktop only) */}
                         <div className="hidden md:flex justify-center items-center">
-                            <div className="relative w-full pl-20 py-10">
+                            <div className="relative w-full pl-0 md:pl-12 lg:pl-20 py-6 md:py-10">
                                 <img
                                     src={imageUrl}
                                     alt={imageAlt}
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-auto max-w-full object-cover"
                                 />
                             </div>
                         </div>

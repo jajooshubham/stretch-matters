@@ -1,7 +1,6 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 import { navItems } from "../../utils/menu"
+import Logo from '../../../app/assets/logo/StretchLogo.png'
 
 interface NavbarProps {
   bgColor?: string;
@@ -18,7 +17,7 @@ export default function Navbar({
   stickyNavbarBgColor = '#ffffff',
   stickyNavbarTextColor = '#1f2937',
   showNavbar = true,
-  logoImage = 'https://aaptiv.com/wp-content/uploads/2023/01/Aaptiv-Logo-Navy.png'
+  logoImage = Logo
 }: NavbarProps) {
   const [isSticky, setIsSticky] = useState(false);
 
@@ -37,9 +36,7 @@ export default function Navbar({
 
   return (
     <nav
-      className={`transition-all duration-300 ${
-        isSticky ? 'fixed top-0 left-0 right-0 z-50 shadow-lg' : 'relative w-full'
-      }`}
+      className={`hidden md:block transition-all duration-300 ${isSticky ? 'fixed top-0 left-0 right-0 z-50 shadow-lg' : 'relative w-full'}`}
       style={{
         backgroundColor: isSticky ? stickyNavbarBgColor : bgColor,
         color: isSticky ? stickyNavbarTextColor : textColor,
@@ -49,11 +46,13 @@ export default function Navbar({
         {/* Logo Left (Visible on Scroll) - Navy Logo */}
         {isSticky && (
           <div className="flex items-center">
-            <img
-              src={logoImage}
-              alt="Logo"
-              className="h-8"
-            />
+            <a href="/">
+              <img
+                src={logoImage}
+                alt="Logo"
+                className="h-8 md:h-12"
+              />
+            </a>
           </div>
         )}
 

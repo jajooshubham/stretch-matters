@@ -1,6 +1,6 @@
-'use client';
-
+import { useState } from 'react';
 import Navbar from './Navbar';
+import RequestDemoModal from '../RequestDemoModal';
 
 interface HeroSectionProps {
   bgColor?: string;
@@ -17,6 +17,8 @@ interface HeroSectionProps {
   stickyNavbarBgColor?: string;
   stickyNavbarTextColor?: string;
   backgroundImage?: string;
+  heroFor?: 'myself' | 'organisation';
+  showImageOnMobile?: boolean;
 }
 
 export default function HeroSection({
@@ -26,15 +28,20 @@ export default function HeroSection({
   description = 'Your journey to better health and flexibility starts here. Join thousands of users improving their wellness routine.',
   buttonText = 'Get Started',
   buttonLink = '#',
-  imageUrl = 'https://aaptiv.com/wp-content/uploads/2025/05/Header-Asset-2048x1188.png',
+  imageUrl ,
   imageAlt = 'Hero Image',
   showNavbar = true,
   navbarBgColor = 'transparent',
   navbarTextColor = '#ffffff',
   stickyNavbarBgColor = '#ffffff',
   stickyNavbarTextColor = '#0c2746',
-  backgroundImage = 'https://aaptiv.com/wp-content/uploads/2024/05/aaptiv-pattern-bg.png',
+  backgroundImage,
+  heroFor,
+  showImageOnMobile = false
 }: HeroSectionProps) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const isModalLink = buttonLink === '/request-demo';
+
   return (
     <section className="w-full" style={{ backgroundColor: bgColor, backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'scroll', backgroundRepeat: 'no-repeat' }}>
       {/* Navbar */}
@@ -47,18 +54,31 @@ export default function HeroSection({
           showNavbar={showNavbar}
         />
       )}
-      <div className="w-full mx-auto px-30 py-16 md:py-28 h-150">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-4 items-center">
+      <div className="w-full mx-auto px-4 md:px-16 lg:px-30 py-8 md:py-16 lg:py-28 h-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+          {/* Image (shown on mobile if enabled, on desktop always) */}
+          {showImageOnMobile && (
+            <div className="md:hidden flex justify-center items-center order-first">
+              <div className="relative w-full">
+                <img
+                  src={imageUrl}
+                  alt={imageAlt}
+                  className="w-full h-auto max-w-full object-cover"
+                />
+              </div>
+            </div>
+          )}
+
           {/* Left Side - Content */}
-          <div className="flex flex-col justify-center min-w-md">
+          <div className="flex flex-col justify-center items-center md:items-start text-center md:text-left">
             <div className="mb-4 leading-tight">
-              <h3 className="text-2xl font-semibold text-[#1100DB]">{heading}</h3>
+              <h3 className="text-lg md:text-2xl font-semibold text-[#1100DB]">{heading}</h3>
               <div
                 className="pt-4"
                 dangerouslySetInnerHTML={{ __html: title }}
               />
             </div>
-            <div className="text-lg md:text-xl mb-8 leading-relaxed max-w-md">
+            <div className="text-base md:text-lg lg:text-xl mb-8 leading-relaxed max-w-md">
               <div
                 className="pt-4"
                 dangerouslySetInnerHTML={{ __html: description }}
@@ -66,32 +86,39 @@ export default function HeroSection({
             </div>
             {buttonText && (
               <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href={buttonLink}
-                  className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold transition-all hover:bg-blue-700 hover:shadow-lg text-center"
-                >
-                  {buttonText}
-                </a>
+                {isModalLink ? (
+                  <button
+                    onClick={() => setModalOpen(true)}
+                    className="px-6 py-3 md:px-8 md:py-3 bg-blue-600 text-white rounded-lg font-semibold transition-all hover:bg-blue-700 hover:shadow-lg text-center cursor-pointer"
+                  >
+                    {buttonText}
+                  </button>
+                ) : (
+                  <a
+                    href={buttonLink}
+                    className="px-6 py-3 md:px-8 md:py-3 bg-blue-600 text-white rounded-lg font-semibold transition-all hover:bg-blue-700 hover:shadow-lg text-center"
+                  >
+                    {buttonText}
+                  </a>
+                )}
               </div>
             )}
           </div>
 
-
-          {/* Right Side - Image (Hidden on Mobile) */}
+          {/* Right Side - Image (Desktop only) */}
           <div className="hidden md:flex justify-center items-center">
             <div className="relative w-full">
               <img
                 src={imageUrl}
                 alt={imageAlt}
-                className="w-full h-full object-cover"
+                className="w-full h-auto max-w-full object-cover"
               />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Optional Wave or Accent Shape */}
-      {/* <div className="w-full h-16 md:h-24 bg-gradient-to-b from-transparent to-white"></div> */}
+      <RequestDemoModal isOpen={modalOpen} onClose={() => setModalOpen(false)} defaultForWhom={heroFor} />
     </section>
   );
 }

@@ -20,7 +20,7 @@ export default function ScrollPageResponsive({
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
   const [active, setActive] = useState<number>(1);
 
-  // 👉 Mobile carousel state
+  // Mobile carousel state
   const [index, setIndex] = useState(0);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -28,13 +28,13 @@ export default function ScrollPageResponsive({
   const next = () => setIndex((prev) => (prev + 1) % sections.length);
   const prev = () => setIndex((prev) => (prev - 1 + sections.length) % sections.length);
 
-  // 👉 Autoplay (mobile)
+  // Autoplay (mobile)
   useEffect(() => {
     const interval = setInterval(next, 4000);
     return () => clearInterval(interval);
   }, [sections.length]);
 
-  // 👉 Swipe handlers
+  // Swipe handlers
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.changedTouches[0].screenX;
   };
@@ -46,7 +46,7 @@ export default function ScrollPageResponsive({
     if (touchEndX.current - touchStartX.current > 50) prev();
   };
 
-  // 👉 Desktop scroll detection (unchanged)
+  // Desktop scroll detection
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -81,7 +81,7 @@ export default function ScrollPageResponsive({
     >
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-center">
 
-        {/* 📱 MOBILE CAROUSEL */}
+        {/* MOBILE CAROUSEL */}
         <div
           className="md:hidden overflow-hidden w-full"
           onTouchStart={handleTouchStart}
@@ -96,23 +96,23 @@ export default function ScrollPageResponsive({
             {sections.map((section) => (
               <div
                 key={section.id}
-                className="min-w-full px-6 py-10 flex flex-col items-center text-center"
+                className="min-w-full px-4 py-8 flex flex-col items-center text-center"
               >
-                <h3 className="text-2xl font-medium">{section.heading}</h3>
-                <h2 className="text-3xl mt-3 font-bold">{section.title}</h2>
-                <p className="mt-4 text-lg">{section.description}</p>
+                <h3 className="text-lg md:text-2xl font-medium">{section.heading}</h3>
+                <h2 className="text-xl md:text-3xl mt-2 md:mt-3 font-bold">{section.title}</h2>
+                <p className="mt-3 md:mt-4 text-base md:text-lg">{section.description}</p>
 
                 <img
                   src={section.image}
                   alt={section.title}
-                  className="mt-6 w-full rounded-xl shadow-lg"
+                  className="mt-4 md:mt-6 w-full h-auto max-w-full rounded-xl shadow-lg"
                 />
               </div>
             ))}
           </div>
         </div>
 
-        {/* 💻 DESKTOP (UNCHANGED) */}
+        {/* DESKTOP */}
         <div className="hidden md:flex w-full">
 
           {/* LEFT CONTENT SCROLL */}
@@ -122,11 +122,11 @@ export default function ScrollPageResponsive({
                 key={section.id}
                 data-id={section.id}
                 ref={(el) => { sectionsRef.current[index] = el }}
-                className="h-screen px-6 flex flex-col justify-center"
+                className="h-screen px-4 md:px-6 flex flex-col justify-center text-left"
               >
-                <h3 className="text-2xl font-medium">{section.heading}</h3>
-                <h2 className="text-3xl mt-3 font-bold">{section.title}</h2>
-                <p className="mt-4 text-xl">{section.description}</p>
+                <h3 className="text-lg md:text-2xl font-medium">{section.heading}</h3>
+                <h2 className="text-xl md:text-3xl mt-2 md:mt-3 font-bold">{section.title}</h2>
+                <p className="mt-3 md:mt-4 text-base md:text-xl">{section.description}</p>
               </div>
             ))}
           </div>
@@ -136,7 +136,7 @@ export default function ScrollPageResponsive({
             <img
               src={sections.find((s) => s.id === active)?.image}
               alt="Active"
-              className="w-[85%] rounded-xl shadow-lg transition-all duration-500"
+              className="w-[85%] h-auto max-w-full rounded-xl shadow-lg transition-all duration-500"
             />
           </div>
 

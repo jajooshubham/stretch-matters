@@ -48,25 +48,25 @@ export function TitleDescriptionThreeVideo({
                     backgroundRepeat: 'no-repeat'
                 }}
                 >
-                    {/* 📝 TEXT CONTENT (TOP) */}
-                    <div className="text-center mt-4 mx-auto">
-                        <h3 className="text-2xl font-semibold text-[#1100DB]">{heading}</h3>
+                    {/* TEXT CONTENT (TOP) */}
+                    <div className="text-center mt-4 mx-auto px-4 md:px-8">
+                        <h3 className="text-lg md:text-xl lg:text-2xl font-semibold text-[#1100DB]">{heading}</h3>
 
-                        <div className="mb-4 leading-tight pt-4">
+                        <div className="mb-3 md:mb-4 leading-tight pt-3 md:pt-4">
                             <div dangerouslySetInnerHTML={{ __html: title }} />
                         </div>
 
-                        <div className="text-lg md:text-xl   leading-relaxed pt-4">
+                        <div className="text-base md:text-lg lg:text-xl leading-relaxed pt-3 md:pt-4">
                             <div dangerouslySetInnerHTML={{ __html: description }} />
                         </div>
 
                     </div>
 
-                    {/* 🎥 VIDEOS */}
+                    {/* VIDEOS */}
 
-                    {/* 📱 Mobile Carousel */}
+                    {/* Mobile Carousel */}
                     <div
-                        className="md:hidden overflow-hidden"
+                        className="md:hidden overflow-hidden mt-4"
                         onTouchStart={handleTouchStart}
                         onTouchEnd={handleTouchEnd}
                     >
@@ -79,7 +79,7 @@ export function TitleDescriptionThreeVideo({
                             {videos.map((src, i) => (
                                 <div key={i} className="min-w-full px-3">
                                     <video
-                                        className="w-full object-cover rounded-xl"
+                                        className="w-full h-auto max-w-full object-cover rounded-xl"
                                         autoPlay
                                         loop
                                         muted
@@ -92,12 +92,12 @@ export function TitleDescriptionThreeVideo({
                         </div>
                     </div>
 
-                    {/* 💻 Desktop Grid */}
-                    <div className="hidden md:grid grid-cols-3 gap-16 px-20 pt-10 pb-0">
+                    {/* Desktop Grid */}
+                    <div className="hidden md:grid grid-cols-3 gap-4 md:gap-8 lg:gap-16 px-4 md:px-12 lg:px-20 pt-6 md:pt-10 pb-0">
                         {videos.map((src, i) => (
                             <div key={i}>
                                 <video
-                                    className="w-full object-cover rounded-xl"
+                                    className="w-full h-auto max-w-full object-cover rounded-xl"
                                     autoPlay
                                     loop
                                     muted
